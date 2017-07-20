@@ -1,0 +1,35 @@
+header {
+  min-height: 60px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-bottom: 2px solid black;
+  background: #630303;
+  z-index: 2;
+}
+
+.s-container {
+  float: right;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 12px;
+  margin-right: 10px;
+}
+
+.s-item {
+  width: 38px;
+  border-radius: 4px;
+  float: right;
+  margin: 4px;
+}
+
+.button {
+  float: right;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+body {
+    background-color: #e7e7e5;
+}
