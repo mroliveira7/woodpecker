@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>WoodPecker</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/layout.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" media="all">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/foundation.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="#">
+        <img src="assets/logo-2-70.png">
+      </a>
+      <div class="s-container">
+        <a href=""> <img class="s-item" src="assets/icons/facebook-logo.svg"> </a>
+        <a href=""> <img class="s-item" src="assets/icons/twitter.svg"> </a>
+        <a href=""> <img class="s-item" src="assets/icons/github-logo.svg"> </a>
+      </div>
+      <a href=""> <div class="button"> CONECTAR-SE </div> </a>
+    </header>
+    <div class="row">
+      <div id="map" class="large-12 columns map"></div>
+    </div>
+
+    <script>
+      var map;
+      var marker;
+      var coords;
+
+      function initMap() {
+        setCoord(-12.9711100, -38.5108300);
+      }
+
+      function setCoord(latitude, longitude) {
+        coords = {lat: latitude, lng: longitude};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: coords
+        });
+
+        marker = new google.maps.Marker({
+          position: coords,
+          map: map
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcz06Q7WuLe5Fbqek_SDExwVQSBnGDaPY&callback=initMap"></script>
+  </body>
+</html>

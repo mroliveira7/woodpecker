@@ -1,5 +1,10 @@
+body {
+  background-color: #03030a;
+}
+
 html {
   font-family: Source Sans Pro;
+  margin: 0px;
 }
 
 header {
@@ -44,6 +49,10 @@ header {
 
 }
 
-body {
-    background-color: #03030a;
+.map {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  position: absolute !important;
+  left: 0px;
 }
