@@ -1,19 +1,24 @@
+html {
+  font-family: Source Sans Pro;
+}
+
 header {
   min-height: 60px;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  border-bottom: 2px solid black;
-  background: #630303;
+  border-bottom: 2px groove #354558;
+  background: #4a0404;
   z-index: 2;
 }
 
 .s-container {
   float: right;
   background-color: white;
-  border-radius: 10px;
-  margin-top: 12px;
+  border-radius: 8px;
+  border-style: solid;
+  margin-top: 9px;
   margin-right: 10px;
 }
 
@@ -27,17 +32,18 @@ header {
 .button {
   float: right;
   position: relative;
+  border-style: solid;
+  border-color: white;
   left: -35%;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 500;
   color: white;
-  background-color: #1d0161;
   padding: 10px;
-  border-radius: 17px;
-  margin-top: 14px
+  border-radius: 8px;
+  margin-top: 11px
 
 }
 
 body {
-    background-color: #e7e7e5;
+    background-color: #03030a;
 }
