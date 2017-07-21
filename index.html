@@ -4,26 +4,50 @@
     <title>WoodPecker</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="stylesheets/layout.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/foundation.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" media="all">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/foundation.js"></script>
     <script src="howler.js/dist/howler.js"></script>
   </head>
   <body>
+    <div class="overlay"></div>
     <header>
-      <a href="#">
-        <img src="assets/logo-2-70.png">
-      </a>
-      <div class="s-container">
-        <a href=""> <img class="s-item" src="assets/icons/facebook-logo.svg"> </a>
-        <a href=""> <img class="s-item" src="assets/icons/twitter.svg"> </a>
-        <a href=""> <img class="s-item" src="assets/icons/github-logo.svg"> </a>
+      <div class="row fluid">
+        <div class="large-12 columms header">
+          <div class="row no-margin">
+            <div class="small-8 large-7 medium-7 columns">
+              <a href="#"><img class="woodpecker-logo margin-top-5" src="assets/woodpecker_logo.svg"></a>
+              <a href="#"><div class="connect-bt">CONECTAR-SE</div></a>
+            </div>
+            <div class="small-4 large-5 medium-5 columns">
+              <div class="logo-socials">
+                <a href=""> <img class="s-item" src="assets/icons/facebook-logo.svg"> </a>
+                <a href=""> <img class="s-item" src="assets/icons/twitter.svg"> </a>
+                <a href=""> <img class="s-item" src="assets/icons/github-logo.svg"> </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <a href=""> <div class="button"> CONECTAR-SE </div> </a>
     </header>
+
     <div class="row">
-      <div id="map" class="large-12 columns map"></div>
+      <div class="large-12 columns">
+        <div id="map" class="map"></div>
+      </div>
     </div>
+
+    <!--
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="high">
+          <div class="content-cta">
+            <img class="cta-image" src="assets/pin.svg">
+            <h1>UMA FRASE DE IMPACTO</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
 
     <script>
         var sound = new Howl({
@@ -47,21 +71,104 @@
       var coords;
 
       function initMap() {
-        setCoord(-12.9711100, -38.5108300);
+        setCoord(-12.9711100, -38.5108300, 13);
       }
 
-      function setCoord(latitude, longitude) {
+      function setMarker(coords, m) {
+        marker = new google.maps.Marker({
+          position: coords,
+          map: m,
+        });
+      }
+
+      function setCoord(latitude, longitude, z) {
         coords = {lat: latitude, lng: longitude};
 
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: coords
+          zoom: z,
+          center: coords,
+          styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
         });
 
-        marker = new google.maps.Marker({
-          position: coords,
-          map: map
-        });
+        setMarker(coords, map);
       }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcz06Q7WuLe5Fbqek_SDExwVQSBnGDaPY&callback=initMap"></script>
