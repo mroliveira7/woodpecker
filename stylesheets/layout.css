@@ -67,18 +67,12 @@ body {
   font-weight: 600;
   color: white;
   padding: 10px;
-<<<<<<< HEAD
   border-radius: 10px;
   margin-top: 15px;
   width: 150px;
   text-align: center;
-=======
-  border-radius: 8px;
-  margin-top: 11px;
   -webkit-transition-duration: 0.2s; /* Safari */
   transition-duration: 0.2s;
-
->>>>>>> ef7f304dc9c827a79eebe30ea9411ea77e6451eb
 }
 
 .map {
@@ -91,7 +85,6 @@ body {
 
 .active {
   width: 100%;
-<<<<<<< HEAD
   height: 100%;
   z-index: 10;
   position: fixed;
@@ -124,7 +117,6 @@ h1 {
 
 .woodpecker-logo {
   width: 146px;
-  background-color: white;
   position: absolute !important;
   left: 0px;
 }
