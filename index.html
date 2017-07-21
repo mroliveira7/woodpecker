@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" media="all">
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/foundation.js"></script>
+    <script src="howler.js/dist/howler.js"></script>
   </head>
   <body>
     <header>
@@ -23,6 +24,22 @@
     <div class="row">
       <div id="map" class="large-12 columns map"></div>
     </div>
+
+    <script>
+        var sound = new Howl({
+          src: ['audio/Blop-Mark_DiAngelo-79054334.mp3', 'audio/sound3.wav'],
+          autoplay: true,
+          loop: false,
+          volume: 0.5,
+          onend: function() {
+            console.log('Finished!');
+          }
+        });
+
+        setTimeout(function(){
+        sound.play();
+        }, 2000);
+    </script>
 
     <script>
       var map;
