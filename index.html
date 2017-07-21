@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/layout.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/foundation.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" media="all">
+    <script src="howler.js/dist/howler.js"></script>
   </head>
   <body>
     <div class="overlay"></div>
@@ -47,6 +48,22 @@
       </div>
     </div>
     -->
+
+    <script>
+        var sound = new Howl({
+          src: ['audio/Blop-Mark_DiAngelo-79054334.mp3', 'audio/sound3.wav'],
+          autoplay: true,
+          loop: false,
+          volume: 0.5,
+          onend: function() {
+            console.log('Finished!');
+          }
+        });
+
+        setTimeout(function(){
+        sound.play();
+        }, 2000);
+    </script>
 
     <script>
       var map;
