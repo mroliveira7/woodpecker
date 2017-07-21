@@ -4,7 +4,7 @@ body {
 }
 
 html {
-  font-family: Source Sans Pro;
+  font-family: 'Roboto';
   margin: 0px;
 }
 
@@ -32,10 +32,11 @@ html {
   text-align: center;
   border: 1px solid white;
   display: inline-block;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: 20px;
   float: right;
   width: 185px;
+  margin-top: 5px;
+  padding: 10px 15px 10px 15px;
 }
 
 body {
@@ -98,6 +99,7 @@ h1 {
   text-align: center;
   color: white !important;
   text-shadow: 2px 1px 14px red;
+  font-weight: lighter !important;
 }
 
 .high {
@@ -106,17 +108,21 @@ h1 {
 }
 
 .cta-image {
-  width: 130px;
+  width: 250px;
   display: block;
   margin: 0 auto;
 }
 
 .content-cta {
-  margin-top: 180px;
+  margin-top: 50px;
 }
 
 .woodpecker-logo {
   width: 146px;
   position: absolute !important;
-  left: 0px;
+}
+
+.gm-style-pbc {
+  opacity: 0.8 !important;
+  background-color: black !important;
 }
