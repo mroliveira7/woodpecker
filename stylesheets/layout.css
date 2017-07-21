@@ -1,4 +1,5 @@
 body {
+  margin: 0px;
   background-color: #03030a;
 }
 
@@ -7,15 +8,34 @@ html {
   margin: 0px;
 }
 
-header {
-  min-height: 60px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  border-bottom: 2px groove #354558;
-  background: #4a0404;
-  z-index: 2;
+.margin-top-5 {
+  margin-top: 5px !important;
+}
+
+.header {
+  background: #1a0000;
+    border-bottom: 1px solid #330000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.fluid {
+  max-width: 100% !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.connect-bt {
+  color: white;
+  text-align: center;
+  border: 1px solid white;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 15px;
+  float: right;
+  width: 185px;
 }
 
 .s-container {
@@ -37,22 +57,58 @@ header {
 .button {
   float: right;
   position: relative;
-  border-style: solid;
-  border-color: white;
+  border: 1px solid white;
   left: -35%;
   font-size: 17px;
   font-weight: 500;
   color: white;
   padding: 10px;
-  border-radius: 8px;
-  margin-top: 11px
-
+  border-radius: 10px;
+  margin-top: 15px;
+  width: 150px;
+  text-align: center;
 }
 
 .map {
-  height: 100%;
+  position: fixed !important;
   width: 100%;
-  background-color: white;
-  position: absolute !important;
-  left: 0px;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+}
+
+.active {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.65;
+}
+
+h1 {
+  text-align: center;
+  color: white !important;
+  text-shadow: 2px 1px 14px red;
+}
+
+.high {
+  z-index: 15;
+  position: relative;
+}
+
+.cta-image {
+  width: 130px;
+  display: block;
+  margin: 0 auto;
+}
+
+.content-cta {
+  margin-top: 180px;
+}
+
+.woodpecker-logo {
+  width: 146px;
 }
