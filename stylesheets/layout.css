@@ -1,15 +1,19 @@
 body {
   margin: 0px;
   background-color: #03030a;
+  font-family: 'Roboto', sans-serif;
 }
 
 html {
-  font-family: 'Roboto';
   margin: 0px;
 }
 
 .margin-top-5 {
   margin-top: 5px !important;
+}
+
+.margin-top-20 {
+  margin-top: 20px !important;
 }
 
 .header {
@@ -122,7 +126,104 @@ h1 {
   position: absolute !important;
 }
 
-.gm-style-pbc {
+.darken {
   opacity: 0.8 !important;
   background-color: black !important;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: rgba(113, 34, 78, 0.18);
+  margin: auto;
+  padding: 20px;
+  padding: 30px 20px;
+  border: 1px solid #888;
+  width: 40%;
+  border-radius: 10px;
+  color: white;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+cursor: pointer;}
+
+.text-center {
+  text-align: center;
+}
+
+.icon {
+  width: 150px;
+}
+
+.title {
+  font-weight: 600;
+  line-height: 20px;
+  padding-right: 20px;
+}
+
+.subtitle {
+  padding-right: 20px;
+  font-size: 13px;
+  color: #cccccc;
+}
+
+.input {
+  border-radius: 23px !important;
+  border: 1px solid #cccccc !important;
+  background-color: transparent !important;
+  box-shadow: none;
+  height: 45px !important;
+  background-image: url("../assets/pin.png");
+  background-position: 12px 12px;
+  background-repeat: no-repeat;
+}
+
+.find {
+  height: 45px !important;
+  border: 1px solid white !important;
+  box-shadow: inset 1px 1px 20px -4px red ,2px 1px 50px -11px red !important;
+  color: #cccccc;
+  background-color: transparent !important;
+  border-radius: 23px !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  text-shadow: 2px 1px 14px red !important;
+  width: 130px;
+  outline: none;
+}
+
+.find:hover {
+  color: #cccccc;
+}
+
+.margin-top-30 {
+  margin-top: 30px !important;
+}
+
+.weight-500 {
+  font-weight: 500;
 }
