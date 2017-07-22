@@ -1,0 +1,36 @@
+#svg-container {
+    display: table;
+    margin: 0 auto;
+}
+
+#anButton {
+    display: block;
+    margin: auto;
+}
+
+body {
+    background: black;
+}
+
+.animate-out {
+    transform-origin: center;
+    transform: scale(5.1);
+    opacity: 0;
+    transition: 3s;
+}
+
+.animate-out2 {
+    transform-origin: center;
+    transform: scale(6.1);
+    fill: #29E990;
+    transition: 2s;
+    opacity: 0;
+}
+
+.fill {
+    fill: #29E990;
+}
+#svg_4 {
+}
+#svg_3 {
+}
