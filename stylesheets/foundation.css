@@ -26,7 +26,6 @@ body {
   color: #222222;
   padding: 0;
   margin: 0;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
   line-height: 1;
@@ -1073,7 +1072,6 @@ p {
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-style: normal;
   color: #222222;
@@ -1127,7 +1125,6 @@ small {
   line-height: inherit; }
 
 code {
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: bold;
   color: #7f0a0c; }
 
@@ -4068,7 +4065,6 @@ kbd {
   border-style: solid;
   border-width: 1px;
   margin: 0;
-  font-family: "Consolas", "Menlo", "Courier", monospace;
   font-size: 0.875em;
   padding: 0.125em 0.25em 0;
   -webkit-border-radius: 3px;
