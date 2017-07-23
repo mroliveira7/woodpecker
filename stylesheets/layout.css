@@ -8,12 +8,26 @@ html {
   margin: 0px;
 }
 
+#map {
+  height: 450px;
+  width: 55%;
+  float: right;
+}
+
 .margin-top-5 {
   margin-top: 5px !important;
 }
 
 .margin-top-20 {
   margin-top: 20px !important;
+}
+
+.margin-top-30 {
+  margin-top: 30px !important;
+}
+
+.margin-left-20 {
+  margin-left: 20px !important;
 }
 
 .header {
@@ -106,6 +120,36 @@ h1 {
   font-weight: lighter !important;
 }
 
+h2 {
+  text-align: justify;
+  color: white !important;
+  text-shadow: 2px 1px 14px red;
+  font-weight: lighter !important;
+}
+
+.full{
+  margin: auto; 
+  min-width: 60%;
+}
+
+.description{
+  position:absolute;  
+  height: 540px;
+}
+
+.left-box{
+  float: top;
+  width: 40%;
+  position: relative;
+}
+
+.right-box{
+  float: bottom;
+  width: 105%;
+  position: relative;
+  font-size: 12px;
+}
+
 .high {
   z-index: 15;
   position: relative;
@@ -124,6 +168,13 @@ h1 {
 .woodpecker-logo {
   width: 146px;
   position: absolute !important;
+}
+
+.dcc-logo {
+  width: 340px;
+  position: relative !important;
+  -webkit-filter: saturate(2); filter: saturate(2);
+  -webkit-filter: saturate(3); filter: saturate(3);
 }
 
 .darken {

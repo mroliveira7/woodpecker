@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>WoodPecker</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/layout.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+            <div class="">
+              <a href="#"><img class="woodpecker-logo margin-top-5" src="assets/woodpecker_logo.svg"></a>
+            </div>
+            <h1> Quem somos - About Us </h1>  
+    </header>
+
+    <div class = "full">
+      <div class="description">
+        <div class = "left-box margin-top-30 margin-left-20">
+          <h2> Somos quatro estudantes da UFBA, responsáveis pelo desenvolvimento do projeto Woodpecker, da disciplina MATC82 - Sistemas Web, lecionada por Galdir Reges. </h2>
+
+          <div class = "right-box margin-top-30">
+            <h2> Henrique Chang Queiroz - Ciência da Computação</h2>
+            <h2> Marcos Ricardo Oliveira - Ciência da Computação</h2>
+            <h2> Paulo Henrique Cardoso - Sistemas de Informação</h2>
+            <h2> Tércio Souza de Jesus - Ciência da Computação</h2>
+          </div>
+
+          <div class="">
+                <a href="#"><img class="dcc-logo margin-top-5" src="assets/dcc.png"></a>
+          </div>
+        </div>
+      </div>
+      <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: -13.001018, lng: -38.507386};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+      </script>
+    </div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcz06Q7WuLe5Fbqek_SDExwVQSBnGDaPY&callback=initMap"></script>
+  </body>
+</html>
