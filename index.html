@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/foundation.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="howler.js/dist/howler.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/modal.js"></script>
   </head>
   <body>
     <div class="overlay"></div>
@@ -36,198 +38,67 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row content-cta">
       <div class="large-12 columns">
         <div class="high">
           <div class="content-cta">
             <img class="cta-image" src="assets/pin_home.png">
-            <h1>UMA FRASE DE IMPACTO</h1>
+            <h1>JUNTE-SE ÀS PESSOAS E <span class="weight-500">DESCUBRA</span> SEUS <span class="weight-500">MOMENTOS</span></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content text-center">
+        <div class="test"></div>
+        <div class="row">
+          <div class="large-6 columns margin-top-30">
+            <div><img class="icon" src="assets/woodpecker_icon.svg"></div>
+            <div class="margin-top-20 title">
+              <div>A SUA CONEXÃO</div>
+              <div>COM O MUNDO!</div>
+            </div>
+            <div class="subtitle margin-top-20">
+              <div>Insira as hashtags que deseja</div>
+              <div>acompanhar ao lado e conecte-se</div>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <input class="input" type="text" />
+            <input class="input" type="text" />
+            <input class="input" type="text" />
+            <input class="input" type="text" />
+
+            <button class="find margin-top-20">BUSCAR</button>
           </div>
         </div>
       </div>
     </div>
 
     <script>
-        var sound = new Howl({
-          src: ['audio/Blop-Mark_DiAngelo-79054334.mp3', 'audio/sound3.wav'],
-          autoplay: true,
-          loop: false,
-          volume: 0.5,
-          onend: function() {
-            console.log('Finished!');
-          }
-        });
+      var sound = new Howl({
+        src: ['audio/Blop-Mark_DiAngelo-79054334.mp3', 'audio/sound3.wav'],
+        autoplay: true,
+        loop: false,
+        volume: 0.5,
+        onend: function() {
+          console.log('Finished!');
+        }
+      });
 
-        setTimeout(function(){
+      setTimeout(function(){
         sound.play();
-        }, 2000);
-    </script>
+      }, 2000);
 
-    <script>
-      var map;
-      var marker;
-      var coords;
+      var connectBt = document.querySelector(".connect-bt");
+      var modal = document.getElementById('myModal');
+      var btn = document.querySelector(".connect-bt");
 
-      function initMap() {
-        setCoord(-12.9711100, -38.5108300, 13);
-      }
-
-      function setMarker(coords, m) {
-
-        marker = new google.maps.Marker({
-          position: coords,
-          map: m,
-          icon: "assets/pin.png"
-        });
-      }
-
-      function setCoord(latitude, longitude, z) {
-        coords = {lat: latitude, lng: longitude};
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: z,
-          mapTypeControl: false,
-          center: coords,
-          styles: [
-          {
-          "featureType": "all",
-          "elementType": "labels.text.fill",
-          "stylers": [
-          {
-          "color": "#ffffff"
-          }
-          ]
-          },
-          {
-          "featureType": "all",
-          "elementType": "labels.text.stroke",
-          "stylers": [
-          {
-          "color": "#000000"
-          },
-          {
-            "lightness": 13
-          }
-          ]
-          },
-          {
-            "featureType": "administrative",
-            "elementType": "geometry.fill",
-            "stylers": [
-            {
-              "color": "#000000"
-            }
-            ]
-          },
-          {
-            "featureType": "administrative",
-            "elementType": "geometry.stroke",
-            "stylers": [
-            {
-              "color": "#144b53"
-            },
-            {
-              "lightness": 14
-            },
-            {
-              "weight": 1.4
-            }
-            ]
-          },
-          {
-            "featureType": "landscape",
-            "elementType": "all",
-            "stylers": [
-            {
-              "color": "#08304b"
-            }
-            ]
-          },
-          {
-            "featureType": "poi",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#0c4152"
-            },
-            {
-              "lightness": 5
-            }
-            ]
-          },
-          {
-            "featureType": "road.highway",
-            "elementType": "geometry.fill",
-            "stylers": [
-            {
-              "color": "#000000"
-            }
-            ]
-          },
-          {
-            "featureType": "road.highway",
-            "elementType": "geometry.stroke",
-            "stylers": [
-            {
-              "color": "#0b434f"
-            },
-            {
-              "lightness": 25
-            }
-            ]
-          },
-          {
-            "featureType": "road.arterial",
-            "elementType": "geometry.fill",
-            "stylers": [
-            {
-              "color": "#000000"
-            }
-            ]
-          },
-          {
-            "featureType": "road.arterial",
-            "elementType": "geometry.stroke",
-            "stylers": [
-            {
-              "color": "#0b3d51"
-            },
-            {
-              "lightness": 16
-            }
-            ]
-          },
-          {
-            "featureType": "road.local",
-            "elementType": "geometry",
-            "stylers": [
-            {
-              "color": "#000000"
-            }
-            ]
-          },
-          {
-            "featureType": "transit",
-            "elementType": "all",
-            "stylers": [
-            {
-              "color": "#146474"
-            }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "all",
-            "stylers": [
-            {
-              "color": "#021019"
-            }
-            ]
-          }
-        ]
-        });
-        setMarker(coords, map);
-      }
+      connectBt.addEventListener('click', function(){
+        document.querySelector('.content-cta').style.display = 'none';
+        modal.style.display = "block";
+      });
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcz06Q7WuLe5Fbqek_SDExwVQSBnGDaPY&callback=initMap"></script>
   </body>
