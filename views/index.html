@@ -1,0 +1,25 @@
+<html>
+<body>
+<h1>Coordenadas</h1>
+<form action="#">
+  <input type="text" id="hashtag">
+  <input id="bt" type="submit">
+
+</form>
+
+<div id="tweets"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script>
+  var bt = document.getElementById('bt');
+
+  bt.addEventListener('click', function() {
+    var hashtag = document.getElementById('hashtag').value;
+    var socket = io();
+    socket.emit('get tweets', hashtag);
+    socket.on('tweets', function (data) {
+      document.getElementById('tweets').innerHTML += JSON.stringify(data);
+    });
+  });
+</script>
+</body>
+</html>
