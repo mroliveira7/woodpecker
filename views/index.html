@@ -1,25 +1,64 @@
 <html>
-<body>
-<h1>Coordenadas</h1>
-<form action="#">
-  <input type="text" id="hashtag">
-  <input id="bt" type="submit">
+  <body>
+    <h1>Digite uma hashtag</h1>
+    <form action="#">
+      <input type="text" id="hashtag">
+      <input id="bt" type="submit">
+    </form>
 
-</form>
+    <div id="tweets"></div>
 
-<div id="tweets"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-<script>
-  var bt = document.getElementById('bt');
+  <div id="map" style="height: 100%"></div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4vbUHsPXJEO5KSilL2zs2ZpHj5BgCAOA&callback=initMap" async defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+  <script>
+    function initMap() {
+      var myLatLng = {lat: -34.397, lng: 150.644};
 
-  bt.addEventListener('click', function() {
-    var hashtag = document.getElementById('hashtag').value;
-    var socket = io();
-    socket.emit('get tweets', hashtag);
-    socket.on('tweets', function (data) {
-      document.getElementById('tweets').innerHTML += JSON.stringify(data);
+      // Create a map object and specify the DOM element for display.
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 15.4114369, lng: 14.2385165},
+        scrollwheel: false,
+        zoom: 3
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+
+    function addMarker(location, map) {
+      var m = new google.maps.Marker({
+        position: location, map: map,
+        animation: google.maps.Animation.DROP
+      });
+    }
+
+    function setInfoWindow(msg) {
+      var infowindow = new google.maps.InfoWindow({
+        content: msg
+      });
+    }
+
+    var bt = document.getElementById('bt');
+
+    bt.addEventListener('click', function() {
+      var hashtag = document.getElementById('hashtag').value;
+      var socket = io();
+      socket.emit('get tweets', hashtag);
+      socket.on('tweets', function (data) {
+        console.log(data);
+        addMarker({lat: data.lat, lng: data.lng}, map);
+        setInfoWindow(data.tweet);
+      });
     });
-  });
-</script>
-</body>
+
+   }
+    </script>
+  </body>
 </html>

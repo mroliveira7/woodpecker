@@ -4,9 +4,7 @@ const nunjucks = require('nunjucks');
 const http = require('http').Server(app);
 const io = require('socket.io').listen(http);
 
-
 var PORT = process.env.PORT || 8080;
-
 
 app.set('views', 'views/');
 app.engine('html', nunjucks.render);
@@ -27,31 +25,39 @@ app.get('/', function(req, res) {
   return res.render('index.html');
 });
 
+var streaming = false;
 io.on('connection', function(socket){
   socket.on('get tweets', function(hashtag) {
     console.log(hashtag);
     var params = {
       track: hashtag
     };
-    client.stream('statuses/filter', params, function(stream) {
-      stream.on('data', function(tweet) {
-        if (!!tweet.coordinates) {
-          var data = {
-            "tweet": tweet.text,
-            "lat": tweet.coordinates.coordinates[0],
-            "lng": tweet.coordinates.coordinates[1]
-          };
 
-          socket.emit("tweets", tweet.text);
-        }
-      })
+    if (!streaming) {
+    //{'locations':'-180,-90,180,90'}
+      client.stream('statuses/filter', {'locations':'-180,-90,180,90'}, function(stream) {
+        var streaming = true;
+        stream.on('data', function(tweet) {
+          if (!!tweet.coordinates) {
+            var data = {
+              "tweet": tweet.text,
+              "lat": tweet.geo.coordinates[0],
+              "lng": tweet.geo.coordinates[1]
+            };
 
-      stream.on('error', function(error) {
-        throw error;
+            socket.emit("tweets", data);
+          }
+        })
+
+        stream.on('error', function(error) {
+          console.log(error);
+        });
+
       });
-
-    });
+    }
   })
 });
 
-http.listen(PORT, () => console.log('server running in '+ PORT));
+// adicionar filtro de hashtags
+// adicionar texto do tweet ou hashtag na view
+http.listen(PORT, () => console.log('Server running in '+ PORT));
