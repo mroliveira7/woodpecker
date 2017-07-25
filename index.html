@@ -64,16 +64,20 @@
             </div>
           </div>
           <div class="large-6 columns">
-            <input class="input" type="text" />
-            <input class="input" type="text" />
-            <input class="input" type="text" />
-            <input class="input" type="text" />
+            <input class="input margin-bottom-10" type="text" />
+            <input class="input margin-bottom-10" type="text" />
+            <input class="input margin-bottom-10" type="text" />
+            <input class="input margin-bottom-10" type="text" />
 
             <button class="find margin-top-20">BUSCAR</button>
           </div>
         </div>
       </div>
     </div>
+
+    <footer>
+      <a class="about-us" href="#">Sobre nós</a>
+    </footer>
 
     <script>
       var sound = new Howl({
@@ -98,6 +102,13 @@
         document.querySelector('.content-cta').style.display = 'none';
         modal.style.display = "block";
       });
+
+      window.onclick = function(e) {
+        if (e.target == modal) {
+          modal.style.display = "none";
+          document.querySelector('.content-cta').style.display = 'block';
+        }
+      } 
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcz06Q7WuLe5Fbqek_SDExwVQSBnGDaPY&callback=initMap"></script>
   </body>

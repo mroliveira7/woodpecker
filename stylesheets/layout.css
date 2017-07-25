@@ -18,6 +18,10 @@ html {
   margin-top: 5px !important;
 }
 
+.margin-bottom-10 {
+  margin-bottom: 10px !important;
+}
+
 .margin-top-20 {
   margin-top: 20px !important;
 }
@@ -407,4 +411,18 @@ cursor: pointer;}
 
 .float-right {
   float: right !important;
+}
+
+.about-us {
+  color: #fff;
+  float: right;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+footer {
+  position: fixed;
+  width: 100%;  
+  bottom: 0;
 }
