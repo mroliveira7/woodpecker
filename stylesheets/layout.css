@@ -8,7 +8,7 @@ html {
   margin: 0px;
 }
 
-#map {
+#map2 {
   height: 450px;
   width: 55%;
   float: right;
@@ -419,6 +419,10 @@ cursor: pointer;}
   margin-right: 15px;
   margin-bottom: 10px;
   text-decoration: none;
+}
+
+.about-us:hover {
+  text-shadow: 2px 1px 14px red;
 }
 
 footer {

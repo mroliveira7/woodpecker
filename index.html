@@ -76,23 +76,10 @@
     </div>
 
     <footer>
-      <a class="about-us" href="#">Sobre nós</a>
+      <a class="about-us" href="about_us.html">Sobre nós</a>
     </footer>
 
     <script>
-      var sound = new Howl({
-        src: ['audio/Blop-Mark_DiAngelo-79054334.mp3', 'audio/sound3.wav'],
-        autoplay: true,
-        loop: false,
-        volume: 0.5,
-        onend: function() {
-          console.log('Finished!');
-        }
-      });
-
-      setTimeout(function(){
-        sound.play();
-      }, 2000);
 
       var connectBt = document.querySelector(".connect-bt");
       var modal = document.getElementById('myModal');
