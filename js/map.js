@@ -25,6 +25,7 @@ function setCoord(latitude, longitude, z) {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: z,
     mapTypeControl: false,
+    disableDefaultUI: true,
     center: coords,
     styles: [
       {
