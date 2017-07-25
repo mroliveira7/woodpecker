@@ -227,3 +227,133 @@ cursor: pointer;}
 .weight-500 {
   font-weight: 500;
 }
+
+.row {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 1200px;
+  *zoom: 1; 
+}
+.row:before, .row:after {
+  content: " ";
+  display: table; 
+}
+.row:after {
+  clear: both; 
+}
+.row.collapse > .column,
+.row.collapse > .columns {
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  float: left;
+}
+.row.collapse .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+.row .row {
+  width: auto;
+  margin-left: -0.9375em;
+  margin-right: -0.9375em;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: none;
+  *zoom: 1;
+}
+.row .row:before, .row .row:after {
+  content: " ";
+  display: table; 
+}
+.row .row:after {
+  clear: both; 
+}
+.row .row.collapse {
+  width: auto;
+  margin: 0;
+  max-width: none;
+  *zoom: 1;
+}
+.row .row.collapse:before, .row .row.collapse:after {
+  content: " ";
+  display: table;
+}
+.row .row.collapse:after {
+  clear: both;
+}
+
+.columns {
+  position: relative;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
+  width: 100%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.large-1 {
+  position: relative;
+  width: 8.33333%; 
+}
+
+.large-2 {
+  position: relative;
+  width: 16.66667%; 
+}
+
+.large-3 {
+  position: relative;
+  width: 25%; 
+}
+
+.large-4 {
+  position: relative;
+  width: 33.33333%; 
+}
+
+.large-5 {
+  position: relative;
+  width: 41.66667%; 
+}
+
+.large-6 {
+  position: relative;
+  width: 50%; 
+}
+
+.large-7 {
+  position: relative;
+  width: 58.33333%; 
+}
+
+.large-8 {
+  position: relative;
+  width: 66.66667%; 
+}
+
+.large-9 {
+  position: relative;
+  width: 75%; 
+}
+
+.large-10 {
+  position: relative;
+  width: 83.33333%; 
+}
+
+.large-11 {
+  position: relative;
+  width: 91.66667%; 
+}
+
+.large-12 {
+  position: relative;
+  width: 100%; 
+}
+
+.float-right {
+  float: right !important;
+}
