@@ -1,13 +1,5 @@
-const app = require('express')();
 const Twitter = require('twitter');
-const nunjucks = require('nunjucks');
-const http = require('http').Server(app);
-const io = require('socket.io').listen(http);
-
-var PORT = process.env.PORT || 8080;
-
-app.set('views', 'views/');
-app.engine('html', nunjucks.render);
+const websocket = require('websocket');
 
 var client = new Twitter({
   consumer_key: 'gMAwT2qYnuzKotGot96HKYSnX',
@@ -16,48 +8,44 @@ var client = new Twitter({
   access_token_secret: 'Nid0fRRb5Ff54IMHyXPsF4uoyFQ8spjWuKNTH7LZYr3mj'
 })
 
-var nunjucksEnv = nunjucks.configure('views/', {
-  autoscape: true,
-  express: app
+var WebSocketServer = require('websocket').server;
+var http = require('http');
+
+var server = http.createServer(function(request, response) {
 });
 
-app.get('/', function(req, res) {
-  return res.render('index.html');
+var PORT = process.env.PORT || 1608;
+
+server.listen(PORT, function() {
+  console.log('Server running in ' + PORT);
 });
 
-var streaming = false;
-io.on('connection', function(socket){
-  socket.on('get tweets', function(hashtag) {
-    console.log(hashtag);
-    var params = {
-      track: hashtag
-    };
-
-    if (!streaming) {
-    //{'locations':'-180,-90,180,90'}
-      client.stream('statuses/filter', {'locations':'-180,-90,180,90'}, function(stream) {
-        var streaming = true;
-        stream.on('data', function(tweet) {
-          if (!!tweet.coordinates) {
-            var data = {
-              "tweet": tweet.text,
-              "lat": tweet.geo.coordinates[0],
-              "lng": tweet.geo.coordinates[1]
-            };
-
-            socket.emit("tweets", data);
-          }
-        })
-
-        stream.on('error', function(error) {
-          console.log(error);
-        });
-
-      });
-    }
-  })
+wsServer = new WebSocketServer({
+  httpServer: server
 });
 
-// adicionar filtro de hashtags
-// adicionar texto do tweet ou hashtag na view
-http.listen(PORT, () => console.log('Server running in '+ PORT));
+wsServer.on('request', function(request) {
+  var connection = request.accept(null, request.origin);
+
+  connection.on('message', function(message) {
+    client.stream('statuses/filter', {'locations':'-180,-90,180,90'}, function(stream) {
+      var streaming = true;
+      stream.on('data', function(tweet) {
+        if (!!tweet.coordinates) {
+          var data = {
+            "tweet": tweet.text,
+            "lat": tweet.geo.coordinates[0],
+            "lng": tweet.geo.coordinates[1]
+          };
+
+          connection.sendUTF(JSON.stringify(data));
+        }
+      })
+    })
+  });
+
+  connection.on('close', function(connection) {
+  });
+});
+
+

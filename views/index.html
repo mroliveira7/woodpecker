@@ -10,7 +10,6 @@
 
   <div id="map" style="height: 100%"></div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4vbUHsPXJEO5KSilL2zs2ZpHj5BgCAOA&callback=initMap" async defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   <script>
     function initMap() {
       var myLatLng = {lat: -34.397, lng: 150.644};
@@ -49,16 +48,22 @@
 
     bt.addEventListener('click', function() {
       var hashtag = document.getElementById('hashtag').value;
-      var socket = io();
-      socket.emit('get tweets', hashtag);
-      socket.on('tweets', function (data) {
-        console.log(data);
-        addMarker({lat: data.lat, lng: data.lng}, map);
-        setInfoWindow(data.tweet);
-      });
-    });
 
-   }
+      var websocket = new WebSocket('ws://localhost:1608/');
+      websocket.onopen = function () {
+        websocket.send('request');
+      }
+
+      websocket.onmessage = function (message) {
+        var data = JSON.parse(message.data);
+        addMarker({lat: data.lat, lng: data.lng}, map);
+      }
+
+      websocket.onerror = function () {
+        console.log('error');
+      }
+    })
+}
     </script>
   </body>
 </html>
