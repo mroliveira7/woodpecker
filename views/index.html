@@ -1,0 +1,69 @@
+<html>
+  <body>
+    <h1>Digite uma hashtag</h1>
+    <form action="#">
+      <input type="text" id="hashtag">
+      <input id="bt" type="submit">
+    </form>
+
+    <div id="tweets"></div>
+
+  <div id="map" style="height: 100%"></div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4vbUHsPXJEO5KSilL2zs2ZpHj5BgCAOA&callback=initMap" async defer></script>
+  <script>
+    function initMap() {
+      var myLatLng = {lat: -34.397, lng: 150.644};
+
+      // Create a map object and specify the DOM element for display.
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 15.4114369, lng: 14.2385165},
+        scrollwheel: false,
+        zoom: 3
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+
+    function addMarker(location, map) {
+      var m = new google.maps.Marker({
+        position: location, map: map,
+        animation: google.maps.Animation.DROP
+      });
+    }
+
+    function setInfoWindow(msg) {
+      var infowindow = new google.maps.InfoWindow({
+        content: msg
+      });
+    }
+
+    var bt = document.getElementById('bt');
+
+    bt.addEventListener('click', function() {
+      var hashtag = document.getElementById('hashtag').value;
+
+      var websocket = new WebSocket('ws://localhost:1608/');
+      websocket.onopen = function () {
+        websocket.send('request');
+      }
+
+      websocket.onmessage = function (message) {
+        var data = JSON.parse(message.data);
+        addMarker({lat: data.lat, lng: data.lng}, map);
+      }
+
+      websocket.onerror = function () {
+        console.log('error');
+      }
+    })
+}
+    </script>
+  </body>
+</html>
