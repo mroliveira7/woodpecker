@@ -24,7 +24,9 @@ wsServer = new WebSocketServer({
   httpServer: server
 });
 
-wsServer.on('request', function(request) {
+wsServer.on('data', function(request) {
+  console.log(request);
+  console.log("aqui: " + request);
   var connection = request.accept(null, request.origin);
 
   connection.on('message', function(message) {

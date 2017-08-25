@@ -64,19 +64,19 @@
             </div>
           </div>
           <div class="large-6 columns">
-            <input class="input margin-bottom-10" type="text" />
-            <input class="input margin-bottom-10" type="text" />
-            <input class="input margin-bottom-10" type="text" />
-            <input class="input margin-bottom-10" type="text" />
+            <input id="hashtag1" class="input margin-bottom-10" name="hashtag[]" type="text" />
+            <input id="hashtag2" class="input margin-bottom-10" name="hashtag[]" type="text" />
+            <input id="hashtag3" class="input margin-bottom-10" name="hashtag[]" type="text" />
+            <input id="hashtag4" class="input margin-bottom-10" name="hashtag[]" type="text" />
 
-            <button class="find margin-top-20">BUSCAR</button>
+            <button id="findTweet" class="find margin-top-20">BUSCAR</button>
           </div>
         </div>
       </div>
     </div>
 
     <footer>
-      <a class="about-us" href="#">Sobre nós</a>
+      <a class="about-us" href="about_us.html">Sobre nós</a>
     </footer>
 
     <script>
@@ -108,7 +108,37 @@
           modal.style.display = "none";
           document.querySelector('.content-cta').style.display = 'block';
         }
-      } 
+      }
+
+      var bt = document.getElementById("findTweet");
+
+      bt.addEventListener("click", function() {
+        var hashes = []
+
+        hashes.push(document.getElementById('hashtag1').value);
+        hashes.push(document.getElementById('hashtag2').value);
+        hashes.push(document.getElementById('hashtag3').value);
+        hashes.push(document.getElementById('hashtag4').value);
+
+        console.log(hashes);
+
+        var websocket = new WebSocket('ws://localhost:1608/');
+          websocket.onopen = function () {
+          websocket.send(JSON.stringify({
+            arrayHash: hashes
+          }));
+        }
+
+        websocket.onmessage = function (message) {
+          var data = JSON.parse(message.data);
+          addMarker({lat: data.lat, lng: data.lng}, map);
+        }
+
+        websocket.onerror = function () {
+          console.log('error');
+        }
+
+      });
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcz06Q7WuLe5Fbqek_SDExwVQSBnGDaPY&callback=initMap"></script>
   </body>
