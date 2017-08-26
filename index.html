@@ -59,15 +59,12 @@
               <div>COM O MUNDO!</div>
             </div>
             <div class="subtitle margin-top-20">
-              <div>Insira as hashtags que deseja</div>
+              <div>Insira um termo que deseja</div>
               <div>acompanhar ao lado e conecte-se</div>
             </div>
           </div>
           <div class="large-6 columns">
             <input id="hashtag1" class="input margin-bottom-10" name="hashtag[]" type="text" />
-            <input id="hashtag2" class="input margin-bottom-10" name="hashtag[]" type="text" />
-            <input id="hashtag3" class="input margin-bottom-10" name="hashtag[]" type="text" />
-            <input id="hashtag4" class="input margin-bottom-10" name="hashtag[]" type="text" />
 
             <button id="findTweet" class="find margin-top-20">BUSCAR</button>
           </div>
@@ -113,20 +110,12 @@
       var bt = document.getElementById("findTweet");
 
       bt.addEventListener("click", function() {
-        var hashes = []
-
-        hashes.push(document.getElementById('hashtag1').value);
-        hashes.push(document.getElementById('hashtag2').value);
-        hashes.push(document.getElementById('hashtag3').value);
-        hashes.push(document.getElementById('hashtag4').value);
-
-        console.log(hashes);
+        var term = document.getElementById('hashtag1').value;
 
         var websocket = new WebSocket('ws://localhost:1608/');
-          websocket.onopen = function () {
-          websocket.send(JSON.stringify({
-            arrayHash: hashes
-          }));
+
+        websocket.onopen = function () {
+          websocket.send(term);
         }
 
         websocket.onmessage = function (message) {
@@ -134,8 +123,8 @@
           addMarker({lat: data.lat, lng: data.lng}, map);
         }
 
-        websocket.onerror = function () {
-          console.log('error');
+        websocket.onerror = function (err) {
+          console.log(err);
         }
 
       });
