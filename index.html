@@ -19,11 +19,10 @@
               <a href="#"><img class="woodpecker-logo margin-top-5" src="assets/woodpecker_logo.svg"></a>
               <a href="#"><div class="connect-bt">CONECTAR-SE</div></a>
             </div>
-            <div class="large-4 float-right columns">
-              <div class="logo-socials">
-                <a href=""> <img class="s-item" src="assets/icons/facebook-logo.svg"> </a>
-                <a href=""> <img class="s-item" src="assets/icons/twitter.svg"> </a>
-                <a href=""> <img class="s-item" src="assets/icons/github-logo.svg"> </a>
+            <div class="large-2 float-right columns">
+              <div class="info">
+                <span class="white" id="term-searched"> </span>
+                <span class="white" id="total"></span>
               </div>
             </div>
           </div>
@@ -66,7 +65,7 @@
           <div class="large-6 columns">
             <input id="hashtag1" class="input margin-bottom-10" name="hashtag[]" type="text" />
 
-            <button id="findTweet" class="find margin-top-20">BUSCAR</button>
+            <button id="findTweet" class="btn find margin-top-20">BUSCAR</button>
           </div>
         </div>
       </div>
@@ -87,10 +86,6 @@
         }
       });
 
-      setTimeout(function(){
-        sound.play();
-      }, 2000);
-
       var connectBt = document.querySelector(".connect-bt");
       var modal = document.getElementById('myModal');
       var btn = document.querySelector(".connect-bt");
@@ -107,7 +102,23 @@
         }
       }
 
+      function addMarker(location, map) {
+        var m = new google.maps.Marker({
+          position: location, map: map,
+          animation: google.maps.Animation.DROP
+        });
+      }
+
+      var termSearched = document.getElementById('term-searched');
+      var totalField = document.getElementById('total');
+
+      function updateData(total, term) {
+        termSearched.innerHTML = `Termo: ${term}`;
+        totalField.innerHTML = `Total: ${total}`;
+      }
+
       var bt = document.getElementById("findTweet");
+      var header = document.getElementsByClassName("header");
 
       bt.addEventListener("click", function() {
         var term = document.getElementById('hashtag1').value;
@@ -118,15 +129,23 @@
           websocket.send(term);
         }
 
+        var tweetsNumber = 0;
         websocket.onmessage = function (message) {
           var data = JSON.parse(message.data);
           addMarker({lat: data.lat, lng: data.lng}, map);
+          tweetsNumber++;
+          updateData(tweetsNumber, term);
+          sound.play();
         }
 
         websocket.onerror = function (err) {
           console.log(err);
         }
 
+        modal.style.display = 'none';
+        connectBt.style.display = 'none';
+        header[0].style.paddingBottom = '40px';
+        termSearched.innerHTML = "Carregando...";
       });
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcz06Q7WuLe5Fbqek_SDExwVQSBnGDaPY&callback=initMap"></script>

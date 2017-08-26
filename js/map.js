@@ -3,7 +3,7 @@ var marker;
 var coords;
 
 function initMap() {
-  setCoord(-12.9711100, -38.5108300, 13);
+  setCoord(33.135757, -36.242075, 13);
 
   google.maps.event.addListenerOnce(map, 'idle', function(){
     document.querySelector(".gm-style-pbc").classList.add("darken");
@@ -23,7 +23,7 @@ function setCoord(latitude, longitude, z) {
   coords = {lat: latitude, lng: longitude};
 
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: z,
+    zoom: 3,
     mapTypeControl: false,
     disableDefaultUI: true,
     center: coords,
