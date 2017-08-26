@@ -47,8 +47,6 @@ wsServer.on('request', function(request) {
     })
   });
 
-  connection.on('close', function(connection) {
-  });
 });
 
 
