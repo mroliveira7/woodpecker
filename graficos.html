@@ -25,7 +25,7 @@
       websocket.onmessage = function (message) {
         var dados = JSON.parse(message.data);
         termo.innerHTML = "Termo: " + term;
-        termoPorPaisMap[dados.country] = ++termoPorPaisMap[dados.country] || 1 ;  
+        termoPorPaisMap[dados.country] = ++termoPorPaisMap[dados.country] || 1 ;
         // data possui todas as informações sobre o tweet.
         if(termoPorPaisMap[dados.country] == 1)
             listaDePaisesTwitts.push([dados.country, termoPorPaisMap[dados.country]]);
@@ -49,7 +49,6 @@
         function drawChart() {
           console.log(termoPorPaisMap);
           var data = google.visualization.arrayToDataTable(listaDePaisesTwitts);
-          
           var options = {
             title: 'Quantiade de Twitts por País',
             titleTextStyle: {
@@ -77,7 +76,7 @@
         function drawRegionsMap() {
           var data = google.visualization.arrayToDataTable(listaDePaisesTwitts);
           var options = {
-            backgroundColor: '1a0000', 
+            backgroundColor: '1a0000',
             legend: {
               textStyle: {
                 color: 'white'
@@ -104,7 +103,7 @@
   <body>
     <div id = "container" class = "container" style="width: 1500px; height: 600px;">
       <div id="piechart" class = "piechart" style="width: 400px; height: 250px;"></div>
-      <div id="termo" class = "termo" style="width: 100px; height: 100px;"></div >
+      <div id="termo" class = "termo" style="display:none; width: 100px; height: 100px;"></div >
       <div id="regions_div"  class = "regions_div"  style="width: 1500px; height: 600px;"></div>
     </div>
   </body>

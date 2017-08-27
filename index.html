@@ -21,7 +21,6 @@
             </div>
             <div class="large-2 float-right columns">
               <div class="info">
-                <div class="white" id="term-searched"> </div>
                 <div class="white" id="total"></div>
                 <div class="white btn" id="graficsBt" style="display:none">Visualizar Gráficos</div>
               </div>
@@ -80,7 +79,7 @@
       
 
       var sound = new Howl({
-        src: ['audio/Blop-Mark_DiAngelo-79054334.mp3', 'audio/sound3.wav'],
+        src: ['audio/Blop-Mark_DiAngelo-79054334.mp3', 'audio/sound2.wav'],
         autoplay: true,
         loop: false,
         volume: 0.5,
@@ -93,16 +92,16 @@
       var modal = document.getElementById('myModal');
       var btn = document.querySelector(".connect-bt");
       var graficsBt = document.getElementById('graficsBt');
-      var termSearched = document.getElementById('term-searched');
       var totalField = document.getElementById('total');
       var bt = document.getElementById("findTweet");
       var header = document.getElementsByClassName("header");
 
+      /*
       connectBt.addEventListener('click', function(){
         document.querySelector('.content-cta').style.display = 'none';
         modal.style.display = "block";
       });
-
+*/
       window.onclick = function(e) {
         if (e.target == modal) {
           modal.style.display = "none";
@@ -110,33 +109,48 @@
         }
       }
 
-      function addMarker(location, map) {
+      function addMarker(location, map, tweet) {
         var m = new google.maps.Marker({
           position: location, map: map,
           animation: google.maps.Animation.DROP
         });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: tweet
+        });
+
+        m.addListener('mouseover', () => infowindow.open(map, m));
+        m.addListener('mouseout', () => infowindow.close(map, m));
+
+        setTimeout(function () {
+          m.setMap(null);
+          delete m;
+        }, 5000);
+
+        return m;
       }
 
-      function updateData(total, term) {
-        termSearched.innerHTML = `Termo: ${term}`;
+      function updateData(total) {
         totalField.innerHTML = `Total: ${total}`;
       }
 
-      bt.addEventListener("click", function() {
-        var term = document.getElementById('hashtag1').value;
+      connectBt.addEventListener("click", function() {
+        var mapOverlay = document.querySelectorAll('.gm-style-pbc')[0];
+        mapOverlay.classList.remove("darken");
 
+        document.querySelector('.content-cta').style.display = 'none';
         var websocket = new WebSocket('ws://localhost:1608/');
 
         websocket.onopen = function () {
-          websocket.send(term);
+          websocket.send('start');
         }
 
         var tweetsNumber = 0;
         websocket.onmessage = function(message) {
           var data = JSON.parse(message.data);
-          addMarker({lat: data.lat, lng: data.lng}, map);
+          addMarker({lat: data.lat, lng: data.lng}, map, data.tweet);
           tweetsNumber++;
-          updateData(tweetsNumber, term);
+          updateData(tweetsNumber);
           sound.play();
         }
 
@@ -147,9 +161,7 @@
         modal.style.display = 'none';
         graficsBt.style.display = 'block';
         connectBt.style.display = 'none';
-        header[0].style.paddingBottom = '25px';        
-        termSearched.innerHTML = "Carregando...";
-        
+        header[0].style.paddingBottom = '25px';
       });
 
       graficsBt.addEventListener('click', () => window.location.href = `graficos.html?q=${document.getElementById('hashtag1').value}`);

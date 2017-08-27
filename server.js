@@ -30,16 +30,18 @@ wsServer.on('request', function(request) {
     var term = message.utf8Data;
     console.log('termo:' + term);
 
-    client.stream('statuses/filter', {track: term}, function(stream) {
+    client.stream('statuses/filter', {'locations':'-180,-90,180,90'}, function(stream) {
       var streaming = true;
       stream.on('data', function(tweet) {
-        if (!!tweet.coordinates) {
+        if (!!tweet.coordinates && !!tweet.place) {
+          console.log(tweet.place);
           var data = {
             "tweet": tweet.text,
             "lat": tweet.geo.coordinates[0],
             "lng": tweet.geo.coordinates[1],
             "country": tweet.place.country
           };
+
 
           connection.sendUTF(JSON.stringify(data));
         }
