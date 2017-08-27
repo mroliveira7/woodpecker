@@ -28,13 +28,6 @@
         zoom: 10
       });
 
-      var mainPin = {
-        url: "../animation/marker_pin.svg",
-        size: new google.maps.Size(70,60),
-        scaledSize: new google.maps.Size(70,60),
-        origin: new google.maps.Point(0,0)
-      }
-
       var myOverlay = new google.maps.OverlayView();
       myOverlay.draw = function(){
         this.getPanes().markerLayer.id='markerlayer'

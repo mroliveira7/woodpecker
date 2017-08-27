@@ -2,6 +2,7 @@ var map;
 var marker;
 var coords;
 
+
 function initMap() {
   setCoord(33.135757, -36.242075, 13);
 
@@ -15,7 +16,8 @@ function setMarker(coords, m) {
   marker = new google.maps.Marker({
     position: coords,
     map: m,
-    icon: "assets/pin.png"
+    icon: "animation/marker_pin.svg",
+    optimized: false
   });
 }
 
@@ -165,6 +167,4 @@ function setCoord(latitude, longitude, z) {
       }
     ]
   });
-
-  setMarker(coords, map);
 }

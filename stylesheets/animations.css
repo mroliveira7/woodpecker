@@ -1,0 +1,85 @@
+.animate-out {
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    opacity: 0;
+    animation: expand2 3s
+}
+
+#markerlayer img {
+  animation: pulse .5s infinite alternate;
+  -webkit-animation: pulse .5s infinite alternate;
+  transform-origin: center;
+  -webkit-transform-origin: center;
+}
+
+.animate-out2 {
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    opacity: 0;
+    fill: #A677E6;
+    animation: expand 2s
+}
+
+@keyframes expand {
+    0% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(8.1);
+        opacity: 0;
+    }
+}
+
+@keyframes expand2 {
+    0% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(7.1);
+        opacity: 0;
+    }
+}
+
+
+
+@-webkit-keyframes pulse {
+ 40% {
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    transform: scale(2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-moz-keyframes pulse {
+ 40% {
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    transform: scale(2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes pulse {
+  40% {
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    transform: scale(2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+  }
+}
