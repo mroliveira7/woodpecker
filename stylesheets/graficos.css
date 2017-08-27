@@ -1,0 +1,17 @@
+body {
+  background: #222326;
+}
+
+.container {
+    margin: auto;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.piechart{
+  float: top;
+}
+
+.regions_div{
+  float: top;
+}
