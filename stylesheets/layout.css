@@ -4,11 +4,15 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.btn {
+  cursor: pointer;
+}
+
 html {
   margin: 0px;
 }
 
-#map {
+#map2 {
   height: 450px;
   width: 55%;
   float: right;
@@ -37,7 +41,7 @@ html {
 .header {
   background: #1a0000;
     border-bottom: 1px solid #330000;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 10px;
 }
 
@@ -181,6 +185,7 @@ h2 {
   -webkit-filter: saturate(3); filter: saturate(3);
 }
 
+
 .darken {
   opacity: 0.8 !important;
   background-color: black !important;
@@ -250,11 +255,14 @@ cursor: pointer;}
   border-radius: 23px !important;
   border: 1px solid #cccccc !important;
   background-color: transparent !important;
-  box-shadow: none;
   height: 45px !important;
-  background-image: url("../assets/pin.png");
-  background-position: 12px 12px;
+  background-image: url("../assets/pin_small.png");
   background-repeat: no-repeat;
+  width: 200px;
+  padding-left: 30px;
+  color: white;
+  text-shadow: 2px 1px 14px red !important;
+  padding-left: 45px;
 }
 
 .find {
@@ -406,7 +414,7 @@ cursor: pointer;}
 
 .large-12 {
   position: relative;
-  width: 100%; 
+  width: 100%;
 }
 
 .float-right {
@@ -423,6 +431,10 @@ cursor: pointer;}
 
 footer {
   position: fixed;
-  width: 100%;  
+  width: 100%;
   bottom: 0;
+}
+
+.white {
+  color: white !important;
 }

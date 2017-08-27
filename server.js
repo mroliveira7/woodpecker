@@ -11,8 +11,7 @@ var client = new Twitter({
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 
-var server = http.createServer(function(request, response) {
-});
+var server = http.createServer(function(request, response) { });
 
 var PORT = process.env.PORT || 1608;
 
@@ -28,14 +27,18 @@ wsServer.on('request', function(request) {
   var connection = request.accept(null, request.origin);
 
   connection.on('message', function(message) {
-    client.stream('statuses/filter', {'locations':'-180,-90,180,90'}, function(stream) {
+    var term = message.utf8Data;
+    console.log('termo:' + term);
+
+    client.stream('statuses/filter', {track: term}, function(stream) {
       var streaming = true;
       stream.on('data', function(tweet) {
         if (!!tweet.coordinates) {
           var data = {
             "tweet": tweet.text,
             "lat": tweet.geo.coordinates[0],
-            "lng": tweet.geo.coordinates[1]
+            "lng": tweet.geo.coordinates[1],
+            "country": tweet.place.country
           };
 
           connection.sendUTF(JSON.stringify(data));
@@ -44,8 +47,6 @@ wsServer.on('request', function(request) {
     })
   });
 
-  connection.on('close', function(connection) {
-  });
 });
 
 
