@@ -37,10 +37,10 @@ wsServer.on('request', function(request) {
           var data = {
             "tweet": tweet.text,
             "lat": tweet.geo.coordinates[0],
-            "lng": tweet.geo.coordinates[1]
+            "lng": tweet.geo.coordinates[1],
+            "country": tweet.place.country
           };
 
-          console.log(data);
           connection.sendUTF(JSON.stringify(data));
         }
       })

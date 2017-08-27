@@ -133,6 +133,7 @@
         websocket.onmessage = function (message) {
           var data = JSON.parse(message.data);
           addMarker({lat: data.lat, lng: data.lng}, map);
+          console.log(data);
           tweetsNumber++;
           updateData(tweetsNumber, term);
           sound.play();
