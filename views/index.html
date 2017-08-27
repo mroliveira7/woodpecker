@@ -1,5 +1,10 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="../animation/master.css" media="screen" title="no title">
+  </head>
+
   <body>
+
     <h1>Digite uma hashtag</h1>
     <form action="#">
       <input type="text" id="hashtag">
@@ -11,6 +16,8 @@
   <div id="map" style="height: 100%"></div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4vbUHsPXJEO5KSilL2zs2ZpHj5BgCAOA&callback=initMap" async defer></script>
   <script>
+
+
     function initMap() {
       var myLatLng = {lat: -34.397, lng: 150.644};
 
@@ -21,21 +28,36 @@
         zoom: 3
       });
 
+      var mainPin = {
+        url: "../animation/marker_pin.svg",
+        size: new google.maps.Size(70,60),
+        scaledSize: new google.maps.Size(70,60),
+        origin: new google.maps.Point(0,0)
+      }
+
+      var myOverlay = new google.maps.OverlayView();
+      myOverlay.draw = function(){
+        this.getPanes().markerLayer.id='markerlayer'
+      };
+      myOverlay.setMap(map);
+
       var marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
-        title: 'Hello World!'
+        title: 'Hello World!',
+        icon: mainPin,
+        optimized: false
       });
 
       marker.addListener('click', function() {
         infowindow.open(map, marker);
       });
 
-    function addMarker(location, map) {
-      var m = new google.maps.Marker({
-        position: location, map: map,
-        animation: google.maps.Animation.DROP
+    function addMarker(location, map, marker) {
+      var marker2 = new google.maps.Marker({
+        position: marker.location, map: map
       });
+      console.log("inseriu?")
     }
 
     function setInfoWindow(msg) {
@@ -56,7 +78,7 @@
 
       websocket.onmessage = function (message) {
         var data = JSON.parse(message.data);
-        addMarker({lat: data.lat, lng: data.lng}, map);
+        addMarker({lat: data.lat, lng: data.lng}, map, marker);
       }
 
       websocket.onerror = function () {
