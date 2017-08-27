@@ -21,8 +21,9 @@
             </div>
             <div class="large-2 float-right columns">
               <div class="info">
-                <span class="white" id="term-searched"> </span>
-                <span class="white" id="total"></span>
+                <div class="white" id="term-searched"> </div>
+                <div class="white" id="total"></div>
+                <div class="white btn" id="graficsBt" style="display:none">Visualizar Gráficos</div>
               </div>
             </div>
           </div>
@@ -76,6 +77,8 @@
     </footer>
 
     <script>
+      
+
       var sound = new Howl({
         src: ['audio/Blop-Mark_DiAngelo-79054334.mp3', 'audio/sound3.wav'],
         autoplay: true,
@@ -89,6 +92,11 @@
       var connectBt = document.querySelector(".connect-bt");
       var modal = document.getElementById('myModal');
       var btn = document.querySelector(".connect-bt");
+      var graficsBt = document.getElementById('graficsBt');
+      var termSearched = document.getElementById('term-searched');
+      var totalField = document.getElementById('total');
+      var bt = document.getElementById("findTweet");
+      var header = document.getElementsByClassName("header");
 
       connectBt.addEventListener('click', function(){
         document.querySelector('.content-cta').style.display = 'none';
@@ -109,16 +117,10 @@
         });
       }
 
-      var termSearched = document.getElementById('term-searched');
-      var totalField = document.getElementById('total');
-
       function updateData(total, term) {
         termSearched.innerHTML = `Termo: ${term}`;
         totalField.innerHTML = `Total: ${total}`;
       }
-
-      var bt = document.getElementById("findTweet");
-      var header = document.getElementsByClassName("header");
 
       bt.addEventListener("click", function() {
         var term = document.getElementById('hashtag1').value;
@@ -130,10 +132,9 @@
         }
 
         var tweetsNumber = 0;
-        websocket.onmessage = function (message) {
+        websocket.onmessage = function(message) {
           var data = JSON.parse(message.data);
           addMarker({lat: data.lat, lng: data.lng}, map);
-          console.log(data);
           tweetsNumber++;
           updateData(tweetsNumber, term);
           sound.play();
@@ -144,10 +145,16 @@
         }
 
         modal.style.display = 'none';
+        graficsBt.style.display = 'block';
         connectBt.style.display = 'none';
-        header[0].style.paddingBottom = '40px';
+        header[0].style.paddingBottom = '25px';        
         termSearched.innerHTML = "Carregando...";
+        
       });
+
+      graficsBt.addEventListener('click', () => window.location.href = `graficos.html?q=${document.getElementById('hashtag1').value}`);
+
+
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcz06Q7WuLe5Fbqek_SDExwVQSBnGDaPY&callback=initMap"></script>
   </body>

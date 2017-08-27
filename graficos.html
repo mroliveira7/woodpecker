@@ -1,0 +1,18 @@
+<script>
+  var websocket = new WebSocket('ws://localhost:1608/');
+  var term = document.URL.split('q=')[1];
+  console.log(term);
+
+  websocket.onopen = function () {
+    websocket.send(term);
+  }
+
+  var tweetsNumber = 0;
+  websocket.onmessage = function (message) {
+    var data = JSON.parse(message.data);
+
+    // data possui todas as informações sobre o tweet.
+    console.log(data);
+  }
+
+</script>
