@@ -1,18 +1,111 @@
-<script>
-  var websocket = new WebSocket('ws://localhost:1608/');
-  var term = document.URL.split('q=')[1];
-  console.log(term);
+<html>
+  <head>
+    <link rel="stylesheet" href="stylesheets/graficos.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/layout.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
 
-  websocket.onopen = function () {
-    websocket.send(term);
-  }
+  <script type="text/javascript">
+      var websocket = new WebSocket('ws://localhost:1608/');
+      var term = document.URL.split('q=')[1];
+      console.log(term);
+      var termo;
+      var termoPorPaisMap = {};
+      var listaDePaisesTwitts = [];
 
-  var tweetsNumber = 0;
-  websocket.onmessage = function (message) {
-    var data = JSON.parse(message.data);
+      listaDePaisesTwitts.push(['Task', 'Twitts por País']);
 
-    // data possui todas as informações sobre o tweet.
-    console.log(data);
-  }
+      websocket.onopen = function () {
+        websocket.send(term);
+        termo = document.getElementById("termo");
+      }
 
-</script>
+      var tweetsNumber = 0;
+
+      websocket.onmessage = function (message) {
+        var dados = JSON.parse(message.data);
+        termo.innerHTML = "Termo: " + term;
+        termoPorPaisMap[dados.country] = ++termoPorPaisMap[dados.country] || 1 ;  
+        // data possui todas as informações sobre o tweet.
+        if(termoPorPaisMap[dados.country] == 1)
+            listaDePaisesTwitts.push([dados.country, termoPorPaisMap[dados.country]]);
+        else{
+          var indiceDoPaisAtualizado = indexOfItemInArray(listaDePaisesTwitts, [dados.country, termoPorPaisMap[dados.country] - 1] );
+          listaDePaisesTwitts[indiceDoPaisAtualizado] = [dados.country, termoPorPaisMap[dados.country]];
+        }
+        console.log(listaDePaisesTwitts);
+        console.log(dados.country);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function indexOfItemInArray(array, item) {
+          for (var i = 0; i < array.length; i++) {
+            if (array[i][0] == item[0] && array[i][1] == item[1]) {
+               return i;
+            }
+          }
+          return -1;  
+        }
+
+        function drawChart() {
+          console.log(termoPorPaisMap);
+          var data = google.visualization.arrayToDataTable(listaDePaisesTwitts);
+          
+          var options = {
+            title: 'Quantiade de Twitts por País',
+            titleTextStyle: {
+                color: 'white'
+            },
+            backgroundColor: '1a0000',
+            legend: {
+              textStyle: {
+                color: 'white'
+              }
+            }
+          };
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+          chart.draw(data, options);
+        }
+
+        google.charts.load('current', {
+          'packages':['geochart'],
+          // Note: you will need to get a mapsApiKey for your project.
+          // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+          'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+          var data = google.visualization.arrayToDataTable(listaDePaisesTwitts);
+          var options = {
+            backgroundColor: '1a0000', 
+            legend: {
+              textStyle: {
+                color: 'white'
+              }
+            }
+          };
+          var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+          chart.draw(data, options);
+        }
+      }
+    </script>
+  <header>
+      <div class="row fluid">
+        <div class="large-12 columms header">
+          <div class="row no-margin">
+            <div class="large-7 columns">
+              <a href="#"><img class="woodpecker-logo margin-top-5" src="assets/woodpecker_logo.svg"></a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  <body>
+    <div id = "container" class = "container" style="width: 1500px; height: 600px;">
+      <div id="piechart" class = "piechart" style="width: 400px; height: 250px;"></div>
+      <div id="termo" class = "termo" style="width: 100px; height: 100px;"></div >
+      <div id="regions_div"  class = "regions_div"  style="width: 1500px; height: 600px;"></div>
+    </div>
+  </body>
+</html>

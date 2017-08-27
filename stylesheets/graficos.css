@@ -1,17 +1,36 @@
 body {
-  background: #222326;
+  background: #1a0000;
 }
 
 .container {
     margin: auto;
     display: inline-block;
     overflow: hidden;
+    background: #1a0000;
+    position: relative;
+    margin-top: 50px;
+}
+
+.termo{
+  font-family: Arial; 
+  color: white;
+  z-index: 20;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 75px;
+  margin-left: 75px;
+  position: absolute;
 }
 
 .piechart{
-  float: top;
+  float: left;
+  z-index: 10;
+  margin-top: 150px;
+  position: absolute;
 }
 
 .regions_div{
-  float: top;
+  float: left;
+  margin-left: 120px;
+  position: absolute;
 }
