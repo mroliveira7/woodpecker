@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/layout.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/animations.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script src="howler.js/dist/howler.js"></script>
     <script src="js/map.js"></script>
   </head>
   <body>
@@ -78,16 +77,6 @@
 
     <script>
 
-      var sound = new Howl({
-        src: ['audio/Blop-Mark_DiAngelo-79054334.mp3', 'audio/sound3.wav'],
-        autoplay: true,
-        loop: false,
-        volume: 0.5,
-        onend: function() {
-          console.log('Finished!');
-        }
-      });
-
       var connectBt = document.querySelector(".connect-bt");
       var modal = document.getElementById('myModal');
       var btn = document.querySelector(".connect-bt");
@@ -96,47 +85,10 @@
       var totalField = document.getElementById('total');
       var bt = document.getElementById("findTweet");
       var header = document.getElementsByClassName("header");
-      var pin_icon = {
-        url: `data:image/svg+xml;utf-8,
-              <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-                <defs>
-                  <filter id="purple-glow" x="-5000%" y="-5000%" width="10000%" height="10000%">
-                          <feComposite in="flood" result="mask" in2="SourceGraphic" operator="in"></feComposite>
-                          <feMorphology in="mask" result="dilated" operator="dilate" radius="2"></feMorphology>
-                          <feGaussianBlur in="dilated" result="blurred" stdDeviation="5"></feGaussianBlur>
-                          <feMerge>
-                              <feMergeNode in="blurred"></feMergeNode>
-                              <feMergeNode in="SourceGraphic"></feMergeNode>
-                          </feMerge>
-                      </filter>
-                </defs>
-                 <style type="text/css">
-                  .st0{fill:#342926;}
-                  .st1{fill:#8A191D;}
-                  .st2{fill:#F5F5F7;}
-                  .st3{opacity:0.36;}
-                  .st4{fill:#565057;}
-                  .st5{fill:#4F4649;}
-                  .st6{fill:#F6E8D3;}
-                  .st7{fill:#DFD4CB;}
-                  .st8{fill:#4D434E;}
-                  .st9{fill:#423939;}
-                  .st10{opacity:0.36;fill:#FAF6F7;}
-                  .st11{fill:#C0251B;}
-                  .st12{fill:#3E2828;}
-                  .st13{fill:#6C191C;}
-                  .st14{fill:#A41D1B;}
-                  .st15{fill:#B59A83;}
-                  .st16{fill:#111014;}
-                  .st17{fill:#791A1D;}</style>
-                 <g>
-                  <title>Layer 1</title>
-                  <ellipse fill="#000000" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="100.20343" cy="124.69001" rx="13.64036" ry="3.31483" opacity="0.8" id="svg_4" class="animate-out2" stroke="#000000"/>
-                  <ellipse fill="#7fff00" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="100.20343" cy="124.69001" rx="9.69843" ry="2.35688" id="svg_3" class="animate-out" fill-opacity="0" opacity="0.8" stroke="#000000"/>
-                  <path d="m100.1692,125.00875c-0.65107,0 -1.30214,-0.32553 -1.70001,-0.83192l0,0l-12.65968,-17.79589l-0.47021,-0.65107c-2.24257,-3.14684 -3.4362,-6.80006 -3.4362,-10.63414c0,-10.01923 8.21071,-18.19377 18.26612,-18.19377c10.0554,0 18.26612,8.17454 18.26612,18.19377c0,3.83408 -1.19363,7.4873 -3.4362,10.63414l-0.6149,0.83192l-12.47883,17.57888l0,0c-0.43405,0.54256 -1.08511,0.86809 -1.73619,0.86809l0,0l0,0l-0.00002,-0.00001zm-0.65107,-1.62767c0.14468,0.21703 0.39787,0.32553 0.65107,0.32553c0.25319,0 0.50639,-0.10851 0.65107,-0.32553l12.47883,-17.57888l0.6149,-0.86809c2.09789,-2.89364 3.21917,-6.29367 3.21917,-9.83838c0,-9.33199 -7.59581,-16.89164 -16.96397,-16.89164c-9.33199,0 -16.96397,7.59581 -16.96397,16.89164c0,3.54472 1.12129,6.94474 3.18301,9.83838l0.47021,0.65107l12.65968,17.79589l0,0.00001zm0.65107,-21.77465c-3.58088,0 -6.51069,-2.92981 -6.51069,-6.51069c0,-3.58088 2.92981,-6.51069 6.51069,-6.51069c3.58088,0 6.51069,2.92981 6.51069,6.51069c0,3.58088 -2.92981,6.51069 -6.51069,6.51069zm0,-11.68308c-2.89364,0 -5.20856,2.31491 -5.20856,5.20856c0,2.85747 2.35109,5.20856 5.20856,5.20856c2.89364,0 5.20856,-2.31491 5.20856,-5.20856c0,-2.89364 -2.35109,-5.20856 -5.20856,-5.20856z" id="svg_1" filter="url(#purple-glow)" fill="#A677E6" class="grow" stroke="null"/>
-                 </g>
-              </svg>`
-      }
+      var pins = ["assets/pins/pin1.svg", "assets/pins/pin2.svg", "assets/pins/pin2.svg", "assets/pins/pin4.svg"]
+      var pins_bgs = ["assets/pins/pin_bg1.svg", "assets/pins/pin_bg2.svg", "assets/pins/pin_bg3.svg", "assets/pins/pin_bg4.svg"]
+      var backAudio = new Audio('sounds/back.mp3');
+      var pinSounds = ["sounds/c009.mp3", "sounds/c011.ogg", "sounds/c014.mp3", "sounds/c016.ogg", "sounds/c019.mp3", "sounds/c022.mp3", "sounds/c025.ogg", "sounds/c007.mp3", "sounds/c009.ogg", "sounds/c012.mp3", "sounds/c014.ogg", "sounds/c017.mp3", "sounds/c019.ogg", "sounds/c022.ogg", "sounds/c026.mp3", "sounds/c007.ogg", "sounds/c010.mp3", "sounds/c012.ogg", "sounds/c015.mp3", "sounds/c017.ogg", "sounds/c020.mp3", "sounds/c023.mp3", "sounds/c026.ogg", "sounds/c008.mp3", "sounds/c010.ogg", "sounds/c013.mp3", "sounds/c015.ogg", "sounds/c018.mp3", "sounds/c021.mp3", "sounds/c023.ogg", "sounds/c027.mp3", "sounds/c008.ogg", "sounds/c011.mp3", "sounds/c013.ogg", "sounds/c016.mp3", "sounds/c018.ogg", "sounds/c021.ogg", "sounds/c024.ogg", "sounds/c027.ogg"]
 
       connectBt.addEventListener('click', function(){
         document.querySelector('.content-cta').style.display = 'none';
@@ -154,16 +106,26 @@
 
         var myOverlay = new google.maps.OverlayView();
         myOverlay.draw = function(){
-          console.log(this.getPanes());
           this.getPanes().markerLayer.id='markerlayer'
         };
         myOverlay.setMap(map);
-
+        var randomPin = Math.floor(Math.random()*3 + 1);
         var m = new google.maps.Marker({
           position: location, map: map,
-          icon: pin_icon,
+          icon: pins[randomPin],
           optimized: false
         });
+
+        var m_bg = new google.maps.Marker({
+          position: location, map: map,
+          icon: pins_bgs[randomPin],
+          optimized: false
+        });
+
+        setTimeout(function () {
+          m_bg.setMap(null);
+          delete m_bg;
+        }, 5000);
       }
 
       function updateData(total, term) {
@@ -174,6 +136,7 @@
       bt.addEventListener("click", function() {
         var term = document.getElementById('hashtag1').value;
         document.querySelector(".gm-style-pbc").classList.remove("darken");
+        backAudio.play();
         var websocket = new WebSocket('ws://localhost:1608/');
 
         websocket.onopen = function () {
@@ -186,7 +149,8 @@
           addMarker({lat: data.lat, lng: data.lng}, map);
           tweetsNumber++;
           updateData(tweetsNumber, term);
-          sound.play();
+          var tweetSound = new Audio(pinSounds[Math.floor(Math.random()*38 + 1)])
+          tweetSound.play();
         }
 
         websocket.onerror = function (err) {
@@ -197,7 +161,7 @@
         graficsBt.style.display = 'block';
         connectBt.style.display = 'none';
         header[0].style.paddingBottom = '25px';
-        termSearched.innerHTML = "Carregando...";
+        termSearched.innerHTML = "Aguardando...";
       });
 
       graficsBt.addEventListener('click', () => window.location.href = `graficos.html?q=${document.getElementById('hashtag1').value}`);

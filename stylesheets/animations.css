@@ -1,23 +1,49 @@
-.animate-out {
-    transform-origin: 50% 50%;
-    -webkit-transform-origin: 50% 50%;
-    opacity: 0;
-    animation: expand2 3s
-}
-
-#markerlayer img {
-  animation: pulse .5s infinite alternate;
-  -webkit-animation: pulse .5s infinite alternate;
+#markerlayer img[src='assets/pins/pin1.svg'] {
+  animation: pulse .8s infinite alternate;
+  -webkit-animation: pulse .8s infinite alternate;
   transform-origin: center;
   -webkit-transform-origin: center;
 }
 
-.animate-out2 {
-    transform-origin: 50% 50%;
-    -webkit-transform-origin: 50% 50%;
+#markerlayer img[src='assets/pins/pin2.svg'] {
+  animation: pulse .8s infinite alternate;
+  -webkit-animation: pulse .8s infinite alternate;
+  transform-origin: center;
+  -webkit-transform-origin: center;
+}
+
+#markerlayer img[src='assets/pins/pin3.svg'] {
+  animation: pulse .8s infinite alternate;
+  -webkit-animation: pulse .8s infinite alternate;
+  transform-origin: center;
+  -webkit-transform-origin: center;
+}
+
+#markerlayer img[src='assets/pins/pin4.svg'] {
+  animation: pulse .8s infinite alternate;
+  -webkit-animation: pulse .8s infinite alternate;
+  transform-origin: center;
+  -webkit-transform-origin: center;
+}
+
+#markerlayer img[src='assets/pins/pin_bg1.svg'] {
     opacity: 0;
-    fill: #A677E6;
-    animation: expand 2s
+    animation: expand 5s
+}
+
+#markerlayer img[src='assets/pins/pin_bg2.svg'] {
+    opacity: 0;
+    animation: expand 5s
+}
+
+#markerlayer img[src='assets/pins/pin_bg3.svg'] {
+    opacity: 0;
+    animation: expand 5s
+}
+
+#markerlayer img[src='assets/pins/pin_bg4.svg'] {
+    opacity: 0;
+    animation: expand 5s
 }
 
 @keyframes expand {
@@ -26,29 +52,17 @@
         opacity: 0.8;
     }
     100% {
-        transform: scale(8.1);
+        transform: scale(4.9);
         opacity: 0;
     }
 }
-
-@keyframes expand2 {
-    0% {
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(7.1);
-        opacity: 0;
-    }
-}
-
 
 
 @-webkit-keyframes pulse {
  40% {
-    -webkit-transform: scale(2);
-    -moz-transform: scale(2);
-    transform: scale(2);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
   }
 
   100% {
@@ -59,9 +73,9 @@
 }
 @-moz-keyframes pulse {
  40% {
-    -webkit-transform: scale(2);
-    -moz-transform: scale(2);
-    transform: scale(2);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
   }
 
   100% {
@@ -72,9 +86,9 @@
 }
 @keyframes pulse {
   40% {
-    -webkit-transform: scale(2);
-    -moz-transform: scale(2);
-    transform: scale(2);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
   }
 
   100% {
