@@ -85,7 +85,7 @@
       var totalField = document.getElementById('total');
       var bt = document.getElementById("findTweet");
       var header = document.getElementsByClassName("header");
-      var pins = ["assets/pins/pin1.svg", "assets/pins/pin2.svg", "assets/pins/pin2.svg", "assets/pins/pin4.svg"]
+      var pins = ["assets/pins/pin1.svg", "assets/pins/pin2.svg", "assets/pins/pin3.svg", "assets/pins/pin4.svg"]
       var pins_bgs = ["assets/pins/pin_bg1.svg", "assets/pins/pin_bg2.svg", "assets/pins/pin_bg3.svg", "assets/pins/pin_bg4.svg"]
       var backAudio = new Audio('sounds/back.mp3');
       var pinSounds = ["sounds/c009.mp3", "sounds/c011.ogg", "sounds/c014.mp3", "sounds/c016.ogg", "sounds/c019.mp3", "sounds/c022.mp3", "sounds/c025.ogg", "sounds/c007.mp3", "sounds/c009.ogg", "sounds/c012.mp3", "sounds/c014.ogg", "sounds/c017.mp3", "sounds/c019.ogg", "sounds/c022.ogg", "sounds/c026.mp3", "sounds/c007.ogg", "sounds/c010.mp3", "sounds/c012.ogg", "sounds/c015.mp3", "sounds/c017.ogg", "sounds/c020.mp3", "sounds/c023.mp3", "sounds/c026.ogg", "sounds/c008.mp3", "sounds/c010.ogg", "sounds/c013.mp3", "sounds/c015.ogg", "sounds/c018.mp3", "sounds/c021.mp3", "sounds/c023.ogg", "sounds/c027.mp3", "sounds/c008.ogg", "sounds/c011.mp3", "sounds/c013.ogg", "sounds/c016.mp3", "sounds/c018.ogg", "sounds/c021.ogg", "sounds/c024.ogg", "sounds/c027.ogg"]
@@ -109,7 +109,7 @@
           this.getPanes().markerLayer.id='markerlayer'
         };
         myOverlay.setMap(map);
-        var randomPin = Math.floor(Math.random()*3 + 1);
+        var randomPin = Math.floor(Math.random()*4);
         var m = new google.maps.Marker({
           position: location, map: map,
           icon: pins[randomPin],
