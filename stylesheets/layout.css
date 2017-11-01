@@ -175,7 +175,6 @@ h2 {
 
 .woodpecker-logo {
   width: 146px;
-  position: absolute !important;
 }
 
 .dcc-logo {
@@ -437,4 +436,8 @@ footer {
 
 .white {
   color: white !important;
+}
+
+.inline-block {
+  display: inline-block;
 }
